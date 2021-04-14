@@ -26,7 +26,7 @@ from collections import Counter
 import re
 ```
 
-1. Next, we get the text. I went to the link provided above and copied and pasted in the first chapter into a variable called chaptertext
+2. Next, we get the text. I went to the link provided above and copied and pasted in the first chapter into a variable called chaptertext
 
 ```Python
 chaptertext = '''
@@ -172,6 +172,24 @@ And I couldn't help answering:
 
 "Well, don't give away the combination till you're good and sure it's the right man that's asking for it."
 '''
+```
+
+3. Let's break down that text into a list of individual lowercase words with no punctuation
+
+```Python
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+chaptertext = chaptertext.lower().split
+cleanwords = list(map(lambda a: re.sub(r'["\'-?:!;]', '' x), chaptertext))
+cleanwords = [word for word in cleanwords if word not in stopwords.words('english')]
+```
+
+4. Now that our list of words are clean we can go ahead and utilize PySpark to get the ten more common words
+
+```Python
+keyvalue = sc.parallelize(cleanwords, 4).map(lambda word: (word,1)).reduceByKey(lambda acc, x: acc+x)
+results = keyvalue.map(lambda x: (x[1], x[0])).sortByKey(False).take(10)))
 ```
 
 ## Commands
