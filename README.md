@@ -10,7 +10,7 @@ Text Data Source: [The Black Eagle Myster by Geraldine Bonner](https://www.guten
 Language: Python
 Tools: Pyspark, Databricks Notebook
 
-## Processes Used
+## Processes Used && Commands
 
 1. First, install and import your libraries and tools
 
@@ -19,11 +19,13 @@ pip install nltk
 ```
 
 ```Python
-## We use this tool to grab the most common words
-from collections import Counter
-
 ## We use this to use regex to remove punctuation
 import re
+
+## nltk to get the stopwords
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
 ```
 
 2. Next, we get the text. I went to the link provided above and copied and pasted in the first chapter into a variable called chaptertext
@@ -177,9 +179,6 @@ And I couldn't help answering:
 3. Let's break down that text into a list of individual lowercase words with no punctuation
 
 ```Python
-import nltk
-from nltk.corpus import stopwords
-nltk.download('stopwords')
 chaptertext = chaptertext.lower().split
 cleanwords = list(map(lambda a: re.sub(r'["\'-?:!;]', '' x), chaptertext))
 cleanwords = [word for word in cleanwords if word not in stopwords.words('english')]
@@ -192,6 +191,6 @@ keyvalue = sc.parallelize(cleanwords, 4).map(lambda word: (word,1)).reduceByKey(
 results = keyvalue.map(lambda x: (x[1], x[0])).sortByKey(False).take(10)))
 ```
 
-## Commands
-
 ## Results
+
+
