@@ -193,5 +193,5 @@ print(list(results))
 ```
 
 ## Results
-
-
+![Image of Results](https://github.com/s529428/finnerty-big-data-final-project/blob/main/top-10-words-result.png?raw=true)
+The top ten words in the first chapter of The Black Eagle Mystery by Geraldine Bonner are {said, babbitts, like, one, miss, got, mr, came, paper, barker} We can make the assumption that there are people taking to each other in this chapter and that its possible they are named babbitts and barker.
