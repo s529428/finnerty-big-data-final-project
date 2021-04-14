@@ -179,8 +179,8 @@ And I couldn't help answering:
 3. Let's break down that text into a list of individual lowercase words with no punctuation
 
 ```Python
-chaptertext = chaptertext.lower().split
-cleanwords = list(map(lambda a: re.sub(r'["\'-?:!;]', '' x), chaptertext))
+chaptertext = chaptertext.lower().split()
+cleanwords = list(map(lambda a: re.sub(r'["\'-?:!;]', '' a), chaptertext))
 cleanwords = [word for word in cleanwords if word not in stopwords.words('english')]
 ```
 
@@ -188,7 +188,8 @@ cleanwords = [word for word in cleanwords if word not in stopwords.words('englis
 
 ```Python
 keyvalue = sc.parallelize(cleanwords, 4).map(lambda word: (word,1)).reduceByKey(lambda acc, x: acc+x)
-results = keyvalue.map(lambda x: (x[1], x[0])).sortByKey(False).take(10)))
+results = keyvalue.map(lambda x: (x[1], x[0])).sortByKey(False).take(10)
+print(list(results))
 ```
 
 ## Results
