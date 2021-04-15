@@ -192,6 +192,29 @@ results = keyvalue.map(lambda x: (x[1], x[0])).sortByKey(False).take(10)
 print(list(results))
 ```
 
+5. With that data we can use Pandas, MatPlotLib and Seaborn to visualize it!
+```Python
+source = "THE BLACK EAGLE MYSTERY - Chapter 1"
+title = "Top Words in " + source
+xlabel = 'word'
+ylabel = 'count'
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.DataFrame.from_records(results, columns =[ylabel, xlabel])
+plt.figure(figsize=(10,3))
+sns.barplot(xlabel, ylabel, data=df, palette="Paired").set_title(title)
+```
+
 ## Results
 ![Image of Results](https://github.com/s529428/finnerty-big-data-final-project/blob/main/top-10-words-result.png?raw=true)
+![Chart of Results]()
 The top ten words in the first chapter of The Black Eagle Mystery by Geraldine Bonner are {said, babbitts, like, one, miss, got, mr, came, paper, barker} We can make the assumption that there are people taking to each other in this chapter and that its possible they are named babbitts and barker.
+
+### References
+- [Geeks For Geeks - How to remove punctuation](https://www.geeksforgeeks.org/python-remove-punctuation-from-string/)
+- [W3Schools - Lambda Function in Python](https://www.w3schools.com/python/python_lambda.asp)
+- [Stack Overflow - Get the top 10 words using Spark/Python](https://stackoverflow.com/questions/59240504/spark-python-reducebykey-then-find-top-10-most-frequent-words-and-frequencies)
+- [The Project Gutenberg - Source Text for Word Count](https://www.gutenberg.org/files/35484/35484-h/35484-h.htm#chapter-i)
