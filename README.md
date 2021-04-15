@@ -8,7 +8,8 @@ Text Data Source: [The Black Eagle Myster by Geraldine Bonner](https://www.guten
 ## Tools & Languages
 
 Language: Python
-Tools: Pyspark, Databricks Notebook
+
+Tools: Pyspark, Databricks Notebook, Pandas, MatPlotLib, Seaborn, Regex, nltk's stopwords
 
 ## Processes Used && Commands
 
